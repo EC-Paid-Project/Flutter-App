@@ -11,7 +11,6 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, dynamic>(
@@ -24,19 +23,12 @@ class _CartPageState extends State<CartPage> {
             backgroundColor: Colors.cyan,
             title: Text('Cart'),
             centerTitle: true,
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
             actions: [
               IconButton(
                 onPressed: () {
-                  store.dispatch(CartAction(CartActionType.clearCart)); 
+                  store.dispatch(CartAction(CartActionType.clearCart));
                   setState(() {});
-  // Navigator.of(context).pushNamed("/cart");
-
+                  // Navigator.of(context).pushNamed("/cart");
                 },
                 icon: Icon(Icons.delete_rounded),
                 tooltip: 'Empty the entire cart',
@@ -51,7 +43,8 @@ class _CartPageState extends State<CartPage> {
                   itemBuilder: (context, index) {
                     final item = store.state.cart.lpg[index];
                     return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8.0, vertical: 8),
                       child: ListTile(
                         title: Text(
                           '${item.title}  ${cart.getItemCount(item.id)})',
@@ -80,10 +73,10 @@ class _CartPageState extends State<CartPage> {
                                 icon: Icon(Icons.remove_circle),
                                 color: Colors.white,
                                 onPressed: () {
-                                  store
-                                      .dispatch(CartAction(CartActionType.removeItem, payload: item.id));
-                                      setState(() {});
-
+                                  store.dispatch(CartAction(
+                                      CartActionType.removeItem,
+                                      payload: item.id));
+                                  setState(() {});
                                 },
                               ),
                             ),
@@ -97,10 +90,10 @@ class _CartPageState extends State<CartPage> {
                                 icon: Icon(Icons.add_circle),
                                 color: Colors.white,
                                 onPressed: () {
-                                  store
-                                      .dispatch(CartAction(CartActionType.addItem, payload: item));
-                                       setState(() {});
-
+                                  store.dispatch(CartAction(
+                                      CartActionType.addItem,
+                                      payload: item));
+                                  setState(() {});
                                 },
                               ),
                             ),
@@ -113,16 +106,18 @@ class _CartPageState extends State<CartPage> {
               ),
               ListTile(
                 title: Text('Subtotal'),
-                trailing: Text('${store.state.cart.getSubtotal().toStringAsFixed(2)} PKR'),
+                trailing: Text(
+                    '${store.state.cart.getSubtotal().toStringAsFixed(2)} PKR'),
               ),
               ListTile(
                 title: Text('Delivery Charges'),
-                trailing:
-                Text('${store.state.cart.getDeliveryCharges().toStringAsFixed(2)} PKR'),
+                trailing: Text(
+                    '${store.state.cart.getDeliveryCharges().toStringAsFixed(2)} PKR'),
               ),
               ListTile(
                 title: Text('Total'),
-                trailing: Text('${(store.state.cart.getSubtotal()+store.state.cart.getDeliveryCharges()).toStringAsFixed(2)} PKR'),
+                trailing: Text(
+                    '${(store.state.cart.getSubtotal() + store.state.cart.getDeliveryCharges()).toStringAsFixed(2)} PKR'),
               ),
             ],
           ),

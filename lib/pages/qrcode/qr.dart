@@ -30,9 +30,7 @@ class QRCodeScannerState extends State<QRCodeScanner> {
   Widget build(BuildContext context) {
     return PlatformScaffold(
       appBar: PlatformAppBar(
-        leading: BackButton(onPressed: () {
-          Navigator.pop(context);
-        }),
+        automaticallyImplyLeading: false,
         title: Text('QR Code Scanner'),
       ),
       body: Stack(

@@ -17,6 +17,7 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return PlatformScaffold(
       appBar: PlatformAppBar(
+        automaticallyImplyLeading: false,
         title: Text('Map Page'),
       ),
       body: GoogleMap(

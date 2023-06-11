@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app/pages/bottomNavigationBar/bottomNavigationBar.dart';
+import 'package:flutter_ecommerce_app/pages/mainPage/main_page.dart';
 import 'package:flutter_ecommerce_app/pages/productDetail/action/productAction.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 

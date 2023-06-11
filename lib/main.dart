@@ -2,9 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/pages/homePage/homePage.dart';
 import 'package:flutter_ecommerce_app/pages/cart/CartPage.dart';
-import 'package:flutter_ecommerce_app/pages/bottomNavigationBar/bottomNavigationBar.dart';
+import 'package:flutter_ecommerce_app/pages/mainPage/main_page.dart';
 import 'package:flutter_ecommerce_app/pages/orderhistoryPage/orderHistory.dart';
+import 'package:flutter_ecommerce_app/pages/profilePage/components/update_profile_page.dart';
+import 'package:flutter_ecommerce_app/pages/profilePage/profile_page.dart';
 import 'package:flutter_ecommerce_app/pages/splashPage/splash.dart';
+import 'package:flutter_ecommerce_app/pages/termsAndConditionsPage/tos.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -25,13 +28,13 @@ import 'reduxStore/reducer.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+  // Firebase.initializeApp();
   final store = Store<AppState>(
     appReducer,
     initialState: AppState.initialState(),
   );
   runApp(
-      DevicePreview(enabled: false, builder: (context) => MyApp(store: store)));
+      DevicePreview(enabled: true, builder: (context) => MyApp(store: store)));
   // MyApp(store: store));
 }
 
@@ -54,7 +57,7 @@ class MyApp extends StatelessWidget {
           cupertino: (_, __) => CupertinoAppData(
             theme: MyTheme.iosThemeData,
           ),
-          home: LoginPage(),
+          home: MainPage(),
           routes: {
             "/login": (context) => LoginPage(),
             "/signup": (context) => SignupPage(),
@@ -69,6 +72,14 @@ class MyApp extends StatelessWidget {
             "/orderHistory": (context) => OrderHistory(),
             "/orderDetail": (context) => OrderDetailPage(),
             "/addressPage": (context) => AddAddressPage(),
+            "/profilePage": (context) => ProfilePage(ProfileData(
+                name: 'Usman Khalid',
+                email: 'uksiddiqu88@gmail.com',
+                password: 'helloworld24',
+                phoneNo: '03123742371',
+                address: 'Karachi')),
+            "/updateProfilePage": (context) => UpdateProfilePage(),
+            '/tos': (context) => TermsAndConditionsPage(),
             "/map": (context) => MapPage(),
           },
         ));

@@ -57,7 +57,7 @@ class GradientContainer extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(context, '/gridpage');
                     },
-                    child: const Text('Order More Now'),
+                    child: const Text('Order Now'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.cyan[700],
                     ),
