@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_declarations, avoid_print
+
 import 'package:encrypt/encrypt.dart';
 import 'urlsClass/url_class.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -5,8 +7,9 @@ import 'dart:convert';
 import 'dart:async';
 
 
-// final String baseUrl="http://10.57.149.237:8000/";
-final String baseUrl="https://owaisali246.pythonanywhere.com";
+final String baseUrl="http://10.0.2.2:8000"; // to connect android emulator to localhost server
+// final String baseUrl="https://owaisali246.pythonanywhere.com";
+
  fun()async{
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -111,10 +114,11 @@ getOne(id) async{
   final response = await apiClient3.get('/products/$id1');
   final data = jsonDecode(response.body);
   print(response.body);
-        var cylinder = data['cylinder'];
-        var discount = data['discount'];
-        cylinder["discount"]=discount;
-  return jsonEncode((cylinder));
+        var cylinder = data['cylinder'];//comment thse if error occure
+        var discount = data['discount'];//1
+        cylinder["discount"]=discount;//2
+  return jsonEncode((cylinder));//3
+  // return response.body;
 
 }
 

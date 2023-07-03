@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+
 import '../../../urls/urls.dart';
 
 signOut() {
@@ -10,7 +11,7 @@ signOut() {
 
 signInWithGoogle(BuildContext context) async {
   try {
-    print("dfddddddd");
+    // print("dfddddddd");
     GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
     GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
@@ -20,7 +21,7 @@ signInWithGoogle(BuildContext context) async {
       idToken: googleAuth?.idToken,
     );
 // print(credential );
-print(googleAuth?.idToken); 
+print(googleAuth?.idToken);
 final a =await googlelogin(googleAuth?.idToken);
 print(a);
 if(a!=null){
