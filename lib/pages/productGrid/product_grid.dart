@@ -39,6 +39,7 @@ class _GridPageState extends State<GridPage> {
                 }else if (snapshot.hasError) {
                   return Center(child: Text(snapshot.error.toString()));
                   }
+                  
                  else if (snapshot.hasData) {
                   List<LPG> lpg = snapshot.data!;
                   return CustomScrollView(
@@ -66,7 +67,7 @@ class _GridPageState extends State<GridPage> {
                 } else if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
                 } else {
-                  return Center(child: CircularProgressIndicator());
+                  return Center(child: Text("No data found!"));
                 }
               },
             ),

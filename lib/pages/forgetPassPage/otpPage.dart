@@ -11,13 +11,58 @@ class OtpPage extends StatefulWidget {
 }
 
 class _OtpPage extends State<OtpPage> {
-  String otp = "";
+  int otp = 1;
   String newPassword1 = "";
   String newPassword2 = "";
   String errorMessage = "";
 
+  myFunction (jsonString)async{
+    print("fgsf");
+    print(jsonString["otp"].runtimeType);
+    print(jsonString["uid"].runtimeType);
+   
+    try{
+// {uid: 8, token: bqsd1o-9902238cc0d029037b5a783bd0742cdc, otp: 800710}
+
+    
+                      if (
+                          newPassword1.isNotEmpty &&
+                          newPassword2.isNotEmpty) {
+                        // Validate if newPassword1 and newPassword2 match
+                        if (newPassword1 == newPassword2) {
+                          if((jsonString["otp"])==(otp) ){
+                      final a=      await sendOtp({
+  "uid":jsonString["uid"],
+  "token":jsonString["token"] ,
+  "new_password1":newPassword1,
+  "new_password2":newPassword2,
+}, jsonString["uid"], jsonString["token"]);
+if(a!=null){
+  Navigator.pushNamed(context, "/login");
+}
+                          }
+                         
+                        } else {
+                          setState(() {
+                            errorMessage = "The passwords entered do not match.";
+                          });
+                        }
+                      } else {
+                        setState(() {
+                          errorMessage = "Please fill in all the required fields.";
+                        });
+                      }
+    }catch(err){
+      print(err);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final jsonString = ModalRoute.of( context)?.settings.arguments;
+
+
+    
     return Scaffold(
       appBar: AppBar(
         title: Text('Input Page'),
@@ -44,7 +89,7 @@ class _OtpPage extends State<OtpPage> {
                     keyboardType: TextInputType.number,
                     onChanged: (value) {
                       setState(() {
-                        otp = value;
+                        otp = int.parse(value);
                       });
                     },
                   ),
@@ -72,35 +117,10 @@ class _OtpPage extends State<OtpPage> {
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () async {
+                    onPressed: ()=>myFunction(jsonString)
                       // Send data to the server or perform desired action
                       // You can add validation logic here before sending the data
-                      if (otp.isNotEmpty &&
-                          newPassword1.isNotEmpty &&
-                          newPassword2.isNotEmpty) {
-                        // Validate if newPassword1 and newPassword2 match
-                        if (newPassword1 == newPassword2) {
-                          // Send the data to the server
-                          // Example: await resetPassword(otp, newPassword1);
-
-                          // Reset the values after successful submission
-                          setState(() {
-                            otp = "";
-                            newPassword1 = "";
-                            newPassword2 = "";
-                            errorMessage = "";
-                          });
-                        } else {
-                          setState(() {
-                            errorMessage = "The passwords entered do not match.";
-                          });
-                        }
-                      } else {
-                        setState(() {
-                          errorMessage = "Please fill in all the required fields.";
-                        });
-                      }
-                    },
+                    ,
                     child: Text('Submit'),
                   ),
                   SizedBox(height: 10),

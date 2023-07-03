@@ -142,6 +142,7 @@ Widget build(BuildContext context) {
                             ),
                           ),
                         ),
+                        TextButton(child: Text("Forget Password",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),onPressed: (){Navigator.pushNamed(context, "/forgetPass");},),
                        const SizedBox(height: 20),
                       GoogleAndAppleButton(),
                       Row(

@@ -299,9 +299,26 @@ await getUser();
 
 
 resetPassword(body) async{
-final response=await apiClient3.post("/dj-rest-auth/password/reset/",body);
+final response=await apiClient3.post("/dj-rest-auth/password/reset/",{"email":body});
 // final Map<String,dynamic> pass_data=jsonDecode(response.body)["pass_data"]; 
-return response.body;
+if(response.statusCode==200){
+
+return jsonDecode(response.body)["pass_data"];
+}else{
+  return null;
+}
+}
+sendOtp(body,uid,token) async{
+final response=await apiClient3.post("/dj-rest-auth/password/reset/confirm/$uid/$token/",body);
+// final Map<String,dynamic> pass_data=jsonDecode(response.body)["pass_data"]; 
+print(response);
+print(response.body);
+if(response.statusCode==200){
+
+return 200;
+}else{
+  return null;
+}
 }
 
 

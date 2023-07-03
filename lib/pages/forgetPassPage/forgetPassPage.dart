@@ -43,10 +43,13 @@ class ForgetPassPage extends StatelessWidget {
                     onPressed: () async {
                       //
                       //
+                      print("--------------");
+                      // final a="df";
                       final a=await resetPassword(email);
+
                       if(a!=null){
-final jsonSting =jsonEncode(a);
-                      Navigator.pushNamed(context, "/otpPage");
+print(a);
+                      Navigator.pushNamed(context, "/otpPage",arguments:a);
                       }
                       //await getOrderDetail(12.toString());
                       // await getUser();
