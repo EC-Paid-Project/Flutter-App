@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/urls/urls.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-
 import '../paymentOrCash/actions/cashAndPaymentAction.dart';
 
 class BillingDetailsPage extends StatefulWidget {
+  const BillingDetailsPage({super.key});
+
   @override
   _BillingDetailsPageState createState() => _BillingDetailsPageState();
 }
@@ -189,46 +190,44 @@ class _BillingDetailsPageState extends State<BillingDetailsPage> {
                 ),
                 SizedBox(height: 16.0),
                 TextFormField(
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                    labelText: 'Phone Number',
-                    labelStyle: TextStyle(color: Colors.white),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+                    style: TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                      labelText: 'Phone Number',
+                      labelStyle: TextStyle(color: Colors.white),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
                     ),
-                  ),
-                  onChanged: (value) {
+                    onChanged: (value) {
                       setState(() {
                         phoneNumber = value;
-                      });}
-                ),
+                      });
+                    }),
                 SizedBox(height: 16.0),
                 TextFormField(
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                    labelText: 'Email Address',
-                    labelStyle: TextStyle(color: Colors.white),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+                    style: TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                      labelText: 'Email Address',
+                      labelStyle: TextStyle(color: Colors.white),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
                     ),
-                  ),
                     onChanged: (value) {
                       setState(() {
                         email = value;
-                      });}
-                ),
+                      });
+                    }),
                 SizedBox(height: 16.0),
                 ElevatedButton(
-                  onPressed: () async{
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      print(accountNumber);
-                      print(email);
-                      print(phoneNumber);
-                      final a=await bank(email,phoneNumber,accountNumber,"pakistan");
-                      if(a!=""){
-                        cashOnDeliveryDialogue(context,type:"Alfa Pay",transId: a);
+                      final a = await bank(
+                          email, phoneNumber, accountNumber, "pakistan");
+                      if (a != "") {
+                        cashOnDeliveryDialogue(context,
+                            type: "Alfa Pay", transId: a);
                       }
-                      
                     }
                   },
                   style: ElevatedButton.styleFrom(

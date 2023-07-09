@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/models/user.dart';
 import 'package:flutter_ecommerce_app/pages/profilePage/components/profile_icon_widget.dart';
@@ -7,24 +6,10 @@ import 'package:flutter_ecommerce_app/pages/profilePage/components/profile_menu_
 import 'package:flutter_ecommerce_app/pages/profilePage/components/tos.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../urls/urls.dart';
 
-// class ProfileData {
-// String name;
-// String email;
-// String password;
-// String phoneNo;
-// String address;
-
-// ProfileData();
-// }
-
 class ProfilePage extends StatelessWidget {
-  // final Future<User> userProfileFuture;
-
-  // const ProfilePage();
-
+  const ProfilePage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -148,10 +133,7 @@ Future<User> loadUserProfile() async {
   final userData = prefs.getString('lpguser');
   if (userData != null) {
     final userMap = jsonDecode(userData);
-    print(userData);
     final userMap1 = jsonDecode(userMap);
-    print(userMap1);
-    // String b=userMap["email"] as String;
     User user = User(
         email: userMap1["email"],
         username: userMap1["first_name"] + " " + userMap1["last_name"]);

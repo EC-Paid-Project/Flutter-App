@@ -43,7 +43,7 @@ class ProfileMenuWidget extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
                   color: Colors.orange.withOpacity(0.1)),
-              child: Icon(
+              child: const Icon(
                 LineAwesomeIcons.angle_right,
                 color: Colors.grey,
               ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-
 import '../../../reduxStore/app_state.dart';
 
 class SmallProduct {
@@ -18,7 +17,6 @@ List<SmallProduct> smProducts = [
       'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60'),
 ];
 
-// ignore: must_be_immutable
 class ProductDetails extends StatelessWidget {
   String title;
   String price;
@@ -37,7 +35,7 @@ class ProductDetails extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.cyan[50],
         border: Border.all(color: const Color.fromARGB(122, 158, 158, 158)),
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(30),
           topRight: Radius.circular(30),
         ),
@@ -51,14 +49,14 @@ class ProductDetails extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 Text(
                   '\$$price',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w600,
                   ),
@@ -68,13 +66,13 @@ class ProductDetails extends StatelessWidget {
             SizedBox(height: 15),
             Text(
               description,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 15,
                 color: Colors.grey,
               ),
             ),
             SizedBox(height: 15),
-            Text(
+            const Text(
               'Similar to this',
               style: TextStyle(
                 fontSize: 16,

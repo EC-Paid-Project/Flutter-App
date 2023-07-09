@@ -12,6 +12,7 @@ class PlatformTextField extends StatelessWidget {
   final double? cupertinoHeight;
 
   const PlatformTextField({
+    super.key,
     required this.labelText,
     required this.prefixIcon,
     this.suffixIcon,
@@ -25,7 +26,7 @@ class PlatformTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (Theme.of(context).platform == TargetPlatform.iOS) {
-      return Container(
+      return SizedBox(
         height: 50,
         child: CupertinoTextField(
           placeholder: labelText,

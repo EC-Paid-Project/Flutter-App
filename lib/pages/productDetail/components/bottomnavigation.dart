@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-
 import '../../../models/food_and_category.dart';
 import '../../../reduxStore/action.dart';
 import '../../../reduxStore/app_state.dart';
@@ -32,7 +31,6 @@ class ProductBottomNavigationBar extends StatelessWidget {
                       if (itemExists == true) {
                         Navigator.of(context).pushNamed("/cart");
                       } else {
-                        // Item does not exist in the cart, add it and navigate to the cart page
                         store.dispatch(
                             CartAction(CartActionType.addItem, payload: lpg));
                         Navigator.of(context).pushNamed("/cart");
@@ -46,7 +44,7 @@ class ProductBottomNavigationBar extends StatelessWidget {
                         color: Colors.black,
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      child: Text(
+                      child: const Text(
                         '+ Add to Cart',
                         style: TextStyle(
                           fontSize: 15,

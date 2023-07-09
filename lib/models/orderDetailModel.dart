@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'package:flutter/material.dart';
-
 class OrderInfo {
   final int id;
   final String date;
@@ -10,7 +7,6 @@ class OrderInfo {
   final int totalPrice;
   final int order;
   final int distributor;
-
   OrderInfo.fromJson(Map<String, dynamic> json)
       : id = json['id'] ?? 0,
         date = json['date'] ?? '',
@@ -28,7 +24,6 @@ class OrderItem {
   final int price;
   final int order;
   final int cylinder;
-
   OrderItem.fromJson(Map<String, dynamic> json)
       : id = json['id'] ?? 0,
         quantity = json['quantity'] ?? 0,
@@ -40,10 +35,10 @@ class OrderItem {
 class Order {
   final OrderInfo orderInfo;
   final List<OrderItem> orderItems;
-
   Order.fromJson(Map<String, dynamic> json)
       : orderInfo = OrderInfo.fromJson(json['order_info'] ?? {}),
         orderItems = (json['order_item'] as List<dynamic>?)
-            ?.map((item) => OrderItem.fromJson(item))
-            .toList() ?? [];
+                ?.map((item) => OrderItem.fromJson(item))
+                .toList() ??
+            [];
 }

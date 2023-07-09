@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/pages/profilePage/components/profile_icon_widget.dart';
 import 'package:flutter_ecommerce_app/pages/profilePage/components/profile_page_form.dart';
-import 'package:flutter_ecommerce_app/pages/profilePage/profile_page.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class UpdateProfilePage extends StatelessWidget {
   const UpdateProfilePage({super.key});
@@ -21,17 +19,10 @@ class UpdateProfilePage extends StatelessWidget {
         body: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.all(16),
-            child: Column(children: [
+            child: const Column(children: [
               ProfileIconWidget(),
-              const SizedBox(height: 50),
-              ProfilePageForm(
-                  // userProfile: ProfileData(
-                  //     name: 'Mohib Qureshi',
-                  //     email: 'mohb@gmail.com',
-                  //     password: 'Mohib123',
-                  //     phoneNo: '03123742371',
-                  //     address: 'Karachi')
-                      )
+              SizedBox(height: 50),
+              ProfilePageForm()
             ]),
           ),
         ));

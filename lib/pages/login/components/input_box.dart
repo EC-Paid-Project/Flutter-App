@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-
 import '../../../models/user.dart';
 import '../../../platformSettings/input.dart';
 
 class MyInputBox extends StatefulWidget {
   final LoginUser loginuser;
   const MyInputBox({Key? key, required this.loginuser}) : super(key: key);
-
   @override
   _MyInputBoxState createState() => _MyInputBoxState();
 }
 
 class _MyInputBoxState extends State<MyInputBox> {
   bool _isPasswordVisible = false;
-
   void _togglePasswordVisibility() {
     setState(() {
       _isPasswordVisible = !_isPasswordVisible;
@@ -25,8 +21,6 @@ class _MyInputBoxState extends State<MyInputBox> {
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
     final double spacing = screenHeight * 0.06;
-    final double textFieldHeight = screenHeight * 0.08;
-
     return Column(
       children: <Widget>[
         SizedBox(height: spacing),

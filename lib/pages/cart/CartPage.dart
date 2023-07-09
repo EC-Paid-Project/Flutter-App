@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/platformSettings/button.dart';
 import 'package:flutter_ecommerce_app/reduxStore/app_state.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import '../../models/cart.dart';
 import '../../reduxStore/action.dart';
-import '../../urls/urls.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -19,8 +17,6 @@ class _CartPageState extends State<CartPage> {
     return StoreConnector<AppState, dynamic>(
       converter: (store) => store.state.cart,
       builder: (context, cart) {
-        // print(cart.lpg[0].price);
-        print(cart.lpg.length);
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.cyan,
@@ -39,7 +35,6 @@ class _CartPageState extends State<CartPage> {
                 onPressed: () {
                   store.dispatch(CartAction(CartActionType.clearCart));
                   setState(() {});
-                  // Navigator.of(context).pushNamed("/cart");
                 },
                 icon: Theme.of(context).platform == TargetPlatform.iOS
                     ? Icon(CupertinoIcons.delete)
@@ -122,8 +117,8 @@ class _CartPageState extends State<CartPage> {
                   },
                 ),
               ),
-              Container(
-                height: MediaQuery.of(context).size.height/4,
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 4,
                 child: ListView(
                   children: [
                     ListTile(
@@ -131,16 +126,16 @@ class _CartPageState extends State<CartPage> {
                       trailing: Text(
                           '${store.state.cart.getSubtotal().toStringAsFixed(2)} PKR'),
                     ),
-              ListTile(
-                title: Text('Delivery Charges'),
-                trailing: Text(
-                    '${store.state.cart.getDeliveryCharges().toStringAsFixed(2)} PKR'),
-              ),
-              ListTile(
-                title: Text('Total'),
-                trailing: Text(
-                    '${(store.state.cart.getSubtotal() + store.state.cart.getDeliveryCharges()).toStringAsFixed(2)} PKR'),
-              ),
+                    ListTile(
+                      title: Text('Delivery Charges'),
+                      trailing: Text(
+                          '${store.state.cart.getDeliveryCharges().toStringAsFixed(2)} PKR'),
+                    ),
+                    ListTile(
+                      title: Text('Total'),
+                      trailing: Text(
+                          '${(store.state.cart.getSubtotal() + store.state.cart.getDeliveryCharges()).toStringAsFixed(2)} PKR'),
+                    ),
                   ],
                 ),
               ),
@@ -156,7 +151,6 @@ class _CartPageState extends State<CartPage> {
                     if (store.state.cart.lpg.isNotEmpty) {
                       Navigator.pushNamed(context, "/addressPage");
                     }
-// sendCart(store.state.cart);
                   },
                 )),
           ),

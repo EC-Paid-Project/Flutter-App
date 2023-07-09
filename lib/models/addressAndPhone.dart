@@ -4,18 +4,15 @@ class AddressAndPhone {
   String postCode = "";
   int phone = 0;
   String city = "";
-  
   AddressAndPhone();
-  
- AddressAndPhone.fromJson(Map<String, dynamic> json)
-      : area = json['area'],
-        // categoryId = json['category_id'],
-        houseNo = json['houseNo'],
-        postCode =  json["postCode"],
-        city =  json["city"],
-        phone= json['phone'];
 
-Map<String, dynamic> toJson() {
+  AddressAndPhone.fromJson(Map<String, dynamic> json)
+      : area = json['area'],
+        houseNo = json['houseNo'],
+        postCode = json["postCode"],
+        city = json["city"],
+        phone = json['phone'];
+  Map<String, dynamic> toJson() {
     return {
       'area': area,
       'houseNo': houseNo,
@@ -24,6 +21,7 @@ Map<String, dynamic> toJson() {
       'city': city,
     };
   }
+
   bool isValid() {
     return area.isNotEmpty &&
         houseNo.isNotEmpty &&

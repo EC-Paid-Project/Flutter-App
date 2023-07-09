@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
 
 class ProductImage extends StatefulWidget {
   final String image;
@@ -32,7 +31,7 @@ class _ProductImageState extends State<ProductImage> {
         });
       },
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color.fromARGB(41, 64, 195, 255),
           boxShadow: [
             BoxShadow(

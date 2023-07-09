@@ -14,24 +14,19 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 2), () async{
+    Timer(Duration(seconds: 2), () async {
       final sharedPreferences = await SharedPreferences.getInstance();
       sharedPreferences.getString("authToken");
-
-if(sharedPreferences.containsKey("authToken")){
-  print("token is there");
- final a=await getUser();
-  if(a!=null){
-  Navigator.pushNamed(context, "/mainPage");
-  }else{
-      Navigator.pushNamed(context, "/login");
-//   }
-
-  }}else{
-      Navigator.pushNamed(context, "/login");
-//   }
-}
-// }
+      if (sharedPreferences.containsKey("authToken")) {
+        final a = await getUser();
+        if (a != null) {
+          Navigator.pushNamed(context, "/mainPage");
+        } else {
+          Navigator.pushNamed(context, "/login");
+        }
+      } else {
+        Navigator.pushNamed(context, "/login");
+      }
     });
   }
 

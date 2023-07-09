@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -76,29 +74,19 @@ class QRCodeScannerState extends State<QRCodeScanner> {
       setState(() {
         scannedData = scanData.code!;
         final productId = scannedData.split(":")[1].trim();
-
-        print(productId);
-        //      String orderId = getOrderIDFromScannedData(scannedData);
         Navigator.popAndPushNamed(context, "/productDetail",
             arguments: productId.toString());
-        // Navigator.pushNamed(context, "/orderDetails
       });
     });
   }
 }
 
 String getOrderIDFromScannedData(String scannedData) {
-  // Split the scanned data using commas
   List<String> dataParts = scannedData.split(',');
-
-  // Iterate through the data parts and find the part containing 'Order ID:'
   for (String part in dataParts) {
     if (part.trim().startsWith('Order ID:')) {
-      // Extract the order ID by removing 'Order ID:' and any leading/trailing spaces
       return part.replaceAll('Order ID:', '').trim();
     }
   }
-
-  // Return an empty string if the order ID is not found
   return '';
 }
