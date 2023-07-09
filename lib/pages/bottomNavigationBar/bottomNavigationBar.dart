@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter/material.dart';
 
 class BottomNavigationBarForApp extends StatelessWidget {
   int indexNum = 0;
   BottomNavigationBarForApp({required this.indexNum, super.key});
-
   @override
   Widget build(BuildContext context) {
     return CurvedNavigationBar(
@@ -31,8 +30,7 @@ class BottomNavigationBarForApp extends StatelessWidget {
           Navigator.pushNamed(context, '/orderHistory');
         } else if (index == 3) {
           Navigator.pushNamed(context, '/cart');
-        }
-         else if (index == 4) {
+        } else if (index == 4) {
           Navigator.pushNamed(context, '/map');
         }
       },

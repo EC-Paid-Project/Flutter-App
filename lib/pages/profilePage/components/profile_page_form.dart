@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app/pages/profilePage/profile_page.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class ProfilePageForm extends StatelessWidget {
-  // final ProfileData userProfile;
   const ProfilePageForm({
-    // required this.userProfile,
     super.key,
   });
 
@@ -17,7 +14,6 @@ class ProfilePageForm extends StatelessWidget {
         child: Column(
           children: [
             TextFormField(
-              // initialValue: userProfile.name,
               decoration: InputDecoration(
                   label: Text('Full Name'),
                   prefixIcon: Icon(LineAwesomeIcons.user),
@@ -31,7 +27,6 @@ class ProfilePageForm extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             TextFormField(
-              // initialValue: userProfile.email,
               decoration: InputDecoration(
                   label: Text('Email'),
                   prefixIcon: Icon(LineAwesomeIcons.envelope),
@@ -48,7 +43,6 @@ class ProfilePageForm extends StatelessWidget {
               obscureText: true,
               autocorrect: false,
               enableSuggestions: false,
-              // initialValue: userProfile.password,
               decoration: InputDecoration(
                   label: Text('Password'),
                   prefixIcon: Icon(LineAwesomeIcons.fingerprint),
@@ -62,7 +56,6 @@ class ProfilePageForm extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             TextFormField(
-              // initialValue: userProfile.phoneNo,
               decoration: InputDecoration(
                   label: Text('Phone Number'),
                   prefixIcon: Icon(LineAwesomeIcons.phone),

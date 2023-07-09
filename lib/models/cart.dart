@@ -4,14 +4,11 @@ import 'dart:convert';
 
 class Cart {
   List<LPG> lpg = [];
-
   Cart();
-
   Cart.fromJson(Map<String, dynamic> json) {
     List<dynamic> lpgJson = json['lpg'];
     lpg = lpgJson.map((itemJson) => LPG.fromJson(itemJson)).toList();
   }
-
   Map<String, dynamic> toJson() => {
         'lpg': lpg.map((item) => item.toJson()).toList(),
       };
@@ -92,6 +89,6 @@ Future<Cart> getCartFromSession() async {
     Cart cart = Cart.fromJson(cartMap);
     return cart;
   } else {
-    return Cart(); // Return an empty cart if no cart is found in the cache
+    return Cart();
   }
 }

@@ -1,20 +1,14 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app/pages/orderDetailPage/order_detail.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../models/addressAndPhone.dart';
-import '../../models/cart.dart';
-import '../../reduxStore/action.dart';
-import '../../reduxStore/app_state.dart';
-import '../../urls/urls.dart';
 import 'action/addressAction.dart';
 import 'address_form.dart';
 
 class AddAddressPage extends StatefulWidget {
+  const AddAddressPage({super.key});
+
   @override
   _AddAddressPageState createState() => _AddAddressPageState();
 }
@@ -22,37 +16,8 @@ class AddAddressPage extends StatefulWidget {
 class _AddAddressPageState extends State<AddAddressPage> {
   final AddressAndPhone addressAndPhone = AddressAndPhone();
   String errorMessage = '';
-
   @override
   Widget build(BuildContext context) {
-    Widget finishButton = InkWell(
-      child: Container(
-        height: 80,
-        width: MediaQuery.of(context).size.width / 1.5,
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Color.fromRGBO(0, 0, 0, 0.16),
-              offset: Offset(0, 5),
-              blurRadius: 10.0,
-            )
-          ],
-          borderRadius: BorderRadius.circular(9.0),
-        ),
-        child: Center(
-          child: Text(
-            "Finish",
-            style: const TextStyle(
-              color: const Color(0xfffefefe),
-              fontWeight: FontWeight.w700,
-              fontStyle: FontStyle.normal,
-              fontSize: 20.0,
-            ),
-          ),
-        ),
-      ),
-    );
-
     return PlatformScaffold(
       appBar: PlatformAppBar(
         leading: IconButton(
@@ -61,9 +26,9 @@ class _AddAddressPageState extends State<AddAddressPage> {
             Navigator.pop(context);
           },
         ),
-        title: Text(
+        title: const Text(
           'Address Details',
-          style: const TextStyle(
+          style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w700,
             fontSize: 18.0,
@@ -108,7 +73,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                                   },
                                   child: Icon(Icons.home),
                                 ),
-                                Text(
+                                const Text(
                                   'Add New Address',
                                   style: TextStyle(
                                     fontSize: 8,
@@ -131,8 +96,6 @@ class _AddAddressPageState extends State<AddAddressPage> {
                           foregroundColor: Colors.white),
                       child: Text("Proceed"),
                       onPressed: () async {
-                        //  print(await getOrderHistory());
-                        // All fields are valid, proceed with sending the address
                         if (addressAndPhone.isValid()) {
                           setState(() {
                             errorMessage = '';
@@ -141,9 +104,9 @@ class _AddAddressPageState extends State<AddAddressPage> {
                               await SharedPreferences.getInstance();
                           prefs.setString("lpgAddress",
                               jsonEncode(addressAndPhone.toJson()));
-                          Navigator.pushNamed(context, "/map",arguments: {"isClick":true});
+                          Navigator.pushNamed(context, "/map",
+                              arguments: {"isClick": true});
                         } else {
-                          // Invalid fields, show an error message
                           setState(() {
                             errorMessage =
                                 'Please fill all fields correctly and ensure the phone number has 10 digits.';
@@ -157,7 +120,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                           margin: EdgeInsets.only(bottom: 20),
                           child: Text(
                             errorMessage,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.red,
                               fontSize: 16,
                             ),

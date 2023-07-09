@@ -5,19 +5,19 @@ class GoogleAndAppleButtonSignup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: Icon(Icons.golf_course),
-                      ),
-                      const SizedBox(width: 20),
-                      CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: Icon(Icons.apple),
-                      ),
-                    ],
-                  );
+    return const Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        CircleAvatar(
+          backgroundColor: Colors.white,
+          child: Icon(Icons.golf_course),
+        ),
+        SizedBox(width: 20),
+        CircleAvatar(
+          backgroundColor: Colors.white,
+          child: Icon(Icons.apple),
+        ),
+      ],
+    );
   }
 }

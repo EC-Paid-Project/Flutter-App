@@ -1,18 +1,15 @@
-import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:http/http.dart' as http;
-
+import 'package:flutter/material.dart';
 import '../../../urls/urls.dart';
 import '../actions/loadCrousel.dart';
 
 class MyCarousel extends StatefulWidget {
+  const MyCarousel({super.key});
   @override
   _MyCarouselState createState() => _MyCarouselState();
 }
 
 class _MyCarouselState extends State<MyCarousel> {
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<String>>(
@@ -24,7 +21,6 @@ class _MyCarouselState extends State<MyCarousel> {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (snapshot.hasData) {
           final images = snapshot.data!;
-
           return Padding(
             padding: const EdgeInsets.only(top: 16),
             child: Column(
@@ -48,7 +44,7 @@ class _MyCarouselState extends State<MyCarousel> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10.0),
                             child: Image.network(
-                              baseUrl+imagePath,
+                              baseUrl + imagePath,
                               fit: BoxFit.cover,
                             ),
                           ),

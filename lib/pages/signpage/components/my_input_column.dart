@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
-
 import '../../../models/signup.dart';
 import 'custom_textfield.dart';
 
 class MyInputColumn extends StatefulWidget {
   final SignupUser user;
-
-  const MyInputColumn({required this.user});
-
+  const MyInputColumn({super.key, required this.user});
   @override
   State<MyInputColumn> createState() => _MyInputColumnState();
 }
 
 class _MyInputColumnState extends State<MyInputColumn> {
   bool _isPasswordVisible = false;
-
   void _togglePasswordVisibility() {
     setState(() {
       _isPasswordVisible = !_isPasswordVisible;
@@ -80,8 +76,6 @@ class _MyInputColumnState extends State<MyInputColumn> {
             ),
             obscureText: !_isPasswordVisible,
           ),
-          // const SizedBox(height: 10),
-          // const SizedBox(height: 10),
         ],
       ),
     );

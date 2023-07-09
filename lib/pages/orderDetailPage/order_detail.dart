@@ -1,12 +1,11 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../models/orderDetailModel.dart';
 import 'action/orderDetailAction.dart';
 
 class OrderDetailPage extends StatelessWidget {
-  OrderDetailPage({Key? key, required String arguments}) : super(key: key);
-
+  const OrderDetailPage({Key? key, required String arguments})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +16,7 @@ class OrderDetailPage extends StatelessWidget {
         future: getOrderData(context),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasError) {
@@ -52,7 +51,7 @@ class OrderDetailPage extends StatelessWidget {
                         SizedBox(height: 5),
                         ListTile(
                           leading: Icon(Icons.calendar_today),
-                          title: Text(
+                          title: const Text(
                             'Date',
                             style: TextStyle(
                               fontSize: 18,
@@ -62,14 +61,14 @@ class OrderDetailPage extends StatelessWidget {
                           trailing: Text(
                             DateFormat.yMMMd()
                                 .format(DateTime.parse(order.orderInfo.date)),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                             ),
                           ),
                         ),
                         ListTile(
                           leading: Icon(Icons.store),
-                          title: Text(
+                          title: const Text(
                             'Distributor ID',
                             style: TextStyle(
                               fontSize: 18,
@@ -78,14 +77,14 @@ class OrderDetailPage extends StatelessWidget {
                           ),
                           trailing: Text(
                             order.orderInfo.distributor.toString(),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                             ),
                           ),
                         ),
                         ListTile(
                           leading: Icon(Icons.info),
-                          title: Text(
+                          title: const Text(
                             'Status',
                             style: TextStyle(
                               fontSize: 18,
@@ -94,14 +93,14 @@ class OrderDetailPage extends StatelessWidget {
                           ),
                           trailing: Text(
                             order.orderInfo.status,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                             ),
                           ),
                         ),
                         ListTile(
                           leading: Icon(Icons.location_on),
-                          title: Text(
+                          title: const Text(
                             'Address',
                             style: TextStyle(
                               fontSize: 18,
@@ -110,14 +109,14 @@ class OrderDetailPage extends StatelessWidget {
                           ),
                           subtitle: Text(
                             order.orderInfo.address,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                             ),
                           ),
                         ),
                         ListTile(
                           leading: Icon(Icons.shopping_basket),
-                          title: Text(
+                          title: const Text(
                             'Total Items Qty',
                             style: TextStyle(
                               fontSize: 18,
@@ -126,14 +125,14 @@ class OrderDetailPage extends StatelessWidget {
                           ),
                           trailing: Text(
                             order.orderInfo.totalItemsQty.toString(),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                             ),
                           ),
                         ),
                         ListTile(
                           leading: Icon(Icons.attach_money),
-                          title: Text(
+                          title: const Text(
                             'Total Price',
                             style: TextStyle(
                               fontSize: 18,
@@ -142,7 +141,7 @@ class OrderDetailPage extends StatelessWidget {
                           ),
                           trailing: Text(
                             order.orderInfo.totalPrice.toString(),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                             ),
                           ),
@@ -170,7 +169,7 @@ class OrderDetailPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Order Items:',
                           style: TextStyle(
                             fontSize: 24,
@@ -188,7 +187,7 @@ class OrderDetailPage extends StatelessWidget {
                               leading: Icon(Icons.shopping_basket),
                               title: Text(
                                 'Product ID: ${item.id}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
@@ -196,7 +195,7 @@ class OrderDetailPage extends StatelessWidget {
                               ),
                               trailing: Text(
                                 'Quantity: ${item.quantity}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 16,
                                   color: Colors.grey,
                                 ),
@@ -220,7 +219,7 @@ class OrderDetailPage extends StatelessWidget {
                           builder: (BuildContext context) {
                             return AlertDialog(
                               title: Text('Confirm'),
-                              content: Text(
+                              content: const Text(
                                   'Are you sure you want to cancel this order?'),
                               actions: [
                                 TextButton(
@@ -232,7 +231,6 @@ class OrderDetailPage extends StatelessWidget {
                                 TextButton(
                                   onPressed: () {
                                     Navigator.of(context).pop();
-                                    // Navigate to HomePage
                                     Navigator.of(context)
                                         .pushNamed('/mainPage');
                                   },
@@ -243,7 +241,7 @@ class OrderDetailPage extends StatelessWidget {
                           },
                         );
                       },
-                      child: Text(
+                      child: const Text(
                         'Cancel Order',
                         style: TextStyle(
                             fontSize: 20,
@@ -256,7 +254,7 @@ class OrderDetailPage extends StatelessWidget {
               ),
             );
           } else {
-            return Center(
+            return const Center(
               child: Text('No order data found'),
             );
           }

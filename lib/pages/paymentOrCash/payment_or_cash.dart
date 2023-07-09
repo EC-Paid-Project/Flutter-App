@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-
 import 'actions/cashAndPaymentAction.dart';
 
 class PaymentOrCashPage extends StatelessWidget {
-  
+  const PaymentOrCashPage({super.key});
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
@@ -18,7 +17,7 @@ class PaymentOrCashPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(height: constraints.maxHeight * 0.01),
-                FractionallySizedBox(
+                const FractionallySizedBox(
                   widthFactor: 0.8,
                   child: Text(
                     'Payment Method',
@@ -41,13 +40,14 @@ class PaymentOrCashPage extends StatelessWidget {
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.white,
                       backgroundColor: Color.fromARGB(255, 60, 190, 4),
-                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 14),
                       textStyle: TextStyle(fontSize: 18),
                     ),
                   ),
                 ),
                 SizedBox(height: constraints.maxHeight * 0.05),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(child: Divider(color: Colors.grey)),
@@ -71,14 +71,14 @@ class PaymentOrCashPage extends StatelessWidget {
                   child: TextButton.icon(
                     onPressed: () {
                       Navigator.pushNamed(context, "/billingDetailsPage");
-                      // Perform action for Online Payment
                     },
                     icon: Icon(Icons.payment),
                     label: Text('Online Payment'),
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.white,
                       backgroundColor: const Color.fromARGB(255, 91, 176, 245),
-                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 14),
                       textStyle: TextStyle(fontSize: 18),
                     ),
                   ),

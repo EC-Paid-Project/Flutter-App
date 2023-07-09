@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/pages/searchBar/filter.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -7,7 +6,7 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 class CustomSearchBar extends StatefulWidget {
   final bool filter;
 
-  CustomSearchBar({required this.filter, Key? key}) : super(key: key);
+  const CustomSearchBar({required this.filter, Key? key}) : super(key: key);
 
   @override
   _CustomSearchBarState createState() => _CustomSearchBarState();
@@ -39,33 +38,34 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
           child: Center(
             child: TypeAheadField(
               textFieldConfiguration: TextFieldConfiguration(
-                controller: _textEditingController,
-                autofocus: false,
-                decoration: InputDecoration(
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-                  border: InputBorder.none,
-                  hintText: "Search product",
-                  prefixIcon: Icon(Icons.search),
-                  hintStyle: TextStyle(
-                    fontSize: 14,
-                    color: Color(0xFFBDBDBD),
+                  controller: _textEditingController,
+                  autofocus: false,
+                  decoration: const InputDecoration(
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+                    border: InputBorder.none,
+                    hintText: "Search product",
+                    prefixIcon: Icon(Icons.search),
+                    hintStyle: TextStyle(
+                      fontSize: 14,
+                      color: Color(0xFFBDBDBD),
+                    ),
+                    labelStyle: TextStyle(
+                      fontSize: 14,
+                      color: Color(0xFF212121),
+                    ),
                   ),
-                  labelStyle: TextStyle(
-                    fontSize: 14,
-                    color: Color(0xFF212121),
-                  ),
-                ),
-                onSubmitted: (value){
-                  final Map<String, String> jsonData = {'search': _textEditingController.text};
-                  final jsonString = jsonEncode(jsonData);
-                  setState(() {
-                    search = jsonData["search"]!;
-                  });
-                  print('Selected: ${_textEditingController.text}');
-                  Navigator.pushNamed(context, "/gridPage", arguments: jsonString);
-                }
-              ),
+                  onSubmitted: (value) {
+                    final Map<String, String> jsonData = {
+                      'search': _textEditingController.text
+                    };
+                    final jsonString = jsonEncode(jsonData);
+                    setState(() {
+                      search = jsonData["search"]!;
+                    });
+                    Navigator.pushNamed(context, "/gridPage",
+                        arguments: jsonString);
+                  }),
               suggestionsCallback: (pattern) {
                 return suggestions
                     .where((name) =>
@@ -78,14 +78,16 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
                 );
               },
               onSuggestionSelected: (suggestion) {
-                final Map<String, String> jsonData = {'search': suggestion.toString()};
+                final Map<String, String> jsonData = {
+                  'search': suggestion.toString()
+                };
                 final jsonString = jsonEncode(jsonData);
                 setState(() {
                   search = jsonData["search"]!;
                   _textEditingController.text = suggestion.toString();
                 });
-                print('Selected: $suggestion');
-                Navigator.pushNamed(context, "/gridPage", arguments: jsonString);
+                Navigator.pushNamed(context, "/gridPage",
+                    arguments: jsonString);
               },
             ),
           ),

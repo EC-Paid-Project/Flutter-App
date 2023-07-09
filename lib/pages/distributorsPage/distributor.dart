@@ -1,27 +1,25 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../models/distributor.dart';
 
 class DistributorsPage extends StatefulWidget {
+  const DistributorsPage({super.key});
+
   @override
   _DistributorsPage createState() => _DistributorsPage();
 }
+
 void onDistributorTap(Distributor distributor) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String encodedDistributor = jsonEncode(distributor.toJson());
   await prefs.setString('LpgDistributor', encodedDistributor);
 }
 
-
 class _DistributorsPage extends State<DistributorsPage> {
   List<Distributor> distributors = [];
-
   @override
   void initState() {
     super.initState();
@@ -33,7 +31,9 @@ class _DistributorsPage extends State<DistributorsPage> {
     List<String>? encodedDistributors = prefs.getStringList('LpgDistributors');
     if (encodedDistributors != null) {
       setState(() {
-        distributors = encodedDistributors.map((encoded) => Distributor.fromJson(jsonDecode(encoded))).toList();
+        distributors = encodedDistributors
+            .map((encoded) => Distributor.fromJson(jsonDecode(encoded)))
+            .toList();
       });
     }
   }
@@ -50,15 +50,14 @@ class _DistributorsPage extends State<DistributorsPage> {
           Distributor distributor = distributors[index];
           return ListTile(
             title: Text(distributor.name),
-            subtitle: Text('Distance: ${distributor.distance.toStringAsFixed(2)} meters'),
-            // trailing: Text(distributor.location),
-             onTap: () {
-    onDistributorTap(distributor);
-  },
+            subtitle: Text(
+                'Distance: ${distributor.distance.toStringAsFixed(2)} meters'),
+            onTap: () {
+              onDistributorTap(distributor);
+            },
           );
         },
       ),
     );
   }
 }
-

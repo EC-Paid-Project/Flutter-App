@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app/appTheme/apptheme.dart';
 import 'package:flutter_ecommerce_app/models/food_and_category.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux/redux.dart';
-
-import '../../../reduxStore/action.dart';
-import '../../../reduxStore/app_state.dart';
-import '../../../urls/urls.dart';
 import '../actions/homegride.dart';
 import 'gridItems.dart';
 
@@ -29,26 +22,21 @@ class GridContainer extends StatelessWidget {
     '3.0Kg',
   ];
 
+  GridContainer({super.key});
+
   @override
   Widget build(BuildContext context) {
     double containerHeight = MediaQuery.of(context).size.height / 4;
     double containerWidth = MediaQuery.of(context).size.width;
-
     return FutureBuilder(
       future: homePageProducts(context),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          // Display a loading indicator while waiting for data
           return CircularProgressIndicator();
         } else if (snapshot.hasError) {
-          // Display an error message if there's an error
           return Text('Error: ${snapshot.error}');
         } else if (snapshot.hasData) {
-          // Retrieve the products from the snapshot
           final List<LPG> products = snapshot.data! as List<LPG>;
-
-          // Update the store with all the products
-
           return Padding(
             padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
             child: Container(
@@ -68,7 +56,6 @@ class GridContainer extends StatelessWidget {
             ),
           );
         } else {
-          // Handle the case when no data is available
           return Text('No data available.');
         }
       },

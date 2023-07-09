@@ -6,7 +6,7 @@ import '../searchBar/searchbar.dart';
 import 'components/gird_items.dart';
 
 class GridPage extends StatefulWidget {
-  GridPage({Key? key, Object? arguments}) : super(key: key);
+  const GridPage({Key? key, Object? arguments}) : super(key: key);
 
   @override
   _GridPageState createState() => _GridPageState();
@@ -16,9 +16,8 @@ class _GridPageState extends State<GridPage> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final itemWidth = (screenWidth - 30) / 2; // Subtracting padding and spacing
-    final itemHeight = itemWidth * 1.2; // Adjust the aspect ratio as needed
-
+    final itemWidth = (screenWidth - 30) / 2;
+    final itemHeight = itemWidth * 1.2;
     return PlatformScaffold(
       backgroundColor: Colors.cyan[100],
       appBar: PlatformAppBar(
@@ -36,11 +35,9 @@ class _GridPageState extends State<GridPage> {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(child: CircularProgressIndicator());
-                }else if (snapshot.hasError) {
+                } else if (snapshot.hasError) {
                   return Center(child: Text(snapshot.error.toString()));
-                  }
-                  
-                 else if (snapshot.hasData) {
+                } else if (snapshot.hasData) {
                   List<LPG> lpg = snapshot.data!;
                   return CustomScrollView(
                     slivers: [

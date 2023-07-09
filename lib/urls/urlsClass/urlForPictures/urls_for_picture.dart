@@ -1,4 +1,3 @@
-// import '../../models/org.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
@@ -15,9 +14,6 @@ FutureOr<http.Response> orgSignUp(formData) async {
   var imageFile =
       await http.MultipartFile.fromPath('image', formData.image.path);
   request.files.add(imageFile);
-  // request.fields['image'] = formData.image;
-
   var response = await request.send();
-
   return http.Response.fromStream(response);
 }

@@ -1,9 +1,6 @@
-// Reducer for a single lpg item
-import '../pages/addressPage/address_add.dart';
 import '../models/addressAndPhone.dart';
 import '../models/cart.dart';
 import '../models/food_and_category.dart';
-import '../models/user.dart';
 import 'action.dart';
 import 'app_state.dart';
 
@@ -13,11 +10,9 @@ AppState appReducer(AppState state, dynamic action) {
     lpg: lpgReducer(state.lpg, action),
     addressAndPhone: addressAndPhoneReducer(state.addressAndPhone, action),
     lpgList: lpgListReducer(state.lpgList, action),
-    // user: userReducer(state.user, action),
   );
 }
 
-// reducer for address and phone
 AddressAndPhone addressAndPhoneReducer(
     AddressAndPhone addressAndPhone, dynamic action) {
   if (action is SetAddressAndPhoneAction) {
@@ -33,21 +28,12 @@ LPG lpgReducer(LPG lpg, dynamic action) {
   return lpg;
 }
 
-// Reducer for a list of lpg items
 List<LPG> lpgListReducer(List<LPG> lpgList, dynamic action) {
   if (action is SetLPGListAction) {
     return action.lpgList;
   }
   return lpgList;
 }
-
-// Reducer for a user
-// User userReducer(User user, dynamic action) {
-//   if (action is SetUserAction) {
-//     return action.user;
-//   }
-//   return user;
-// }
 
 Cart cartReducer(Cart state, action) {
   final newState = Cart();
@@ -66,8 +52,6 @@ Cart cartReducer(Cart state, action) {
         break;
     }
   }
-  // print(newState.lpg);
   saveCartToSession(newState);
-// print(getCartFromSession());
   return newState;
 }

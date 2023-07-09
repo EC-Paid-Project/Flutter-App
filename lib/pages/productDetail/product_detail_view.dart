@@ -7,13 +7,14 @@ import 'components/productImage.dart';
 import 'components/product_detail.dart';
 
 class ProductDetailsView extends StatelessWidget {
-  ProductDetailsView({Key? key, required String arguments}) : super(key: key);
+  const ProductDetailsView({Key? key, required String arguments})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
         appBar: PlatformAppBar(
-          title: Text(
+          title: const Text(
             'Cylinder Details',
             style: TextStyle(color: Colors.white),
           ),
@@ -29,7 +30,7 @@ class ProductDetailsView extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, '/cart');
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.shopping_bag_outlined,
                 color: Colors.white,
               ),
@@ -41,10 +42,8 @@ class ProductDetailsView extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 return Center(child: Text(snapshot.error.toString()));
-              } 
-              else if (snapshot.hasData) {
+              } else if (snapshot.hasData) {
                 LPG lpg = snapshot.data as LPG;
-
                 return Column(
                   children: [
                     ProductImage(image: lpg.image),
@@ -70,7 +69,6 @@ class ProductDetailsView extends StatelessWidget {
                         ],
                       ),
                     ),
-                    // Expanded(child: SizedBox()),
                     ProductBottomNavigationBar(lpg: lpg),
                   ],
                 );

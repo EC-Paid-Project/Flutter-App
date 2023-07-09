@@ -1,21 +1,19 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app/urls/urls.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-
 import '../../models/orderHistory.dart';
 import '../homePage/components/middleContainer.dart';
 import 'actions/orderHistoryActions.dart';
 
 class OrderHistory extends StatelessWidget {
+  const OrderHistory({super.key});
+
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
       appBar: PlatformAppBar(title: Text("App")),
       body: Column(
         children: [
-          GradientContainer(
+          const GradientContainer(
             text: "Order Detail",
             image:
                 "https://www.shutterstock.com/image-vector/wallet-mascot-character-design-vector-1660276741",
@@ -25,21 +23,16 @@ class OrderHistory extends StatelessWidget {
               future: fetchOrderHistory(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  // Show a loading indicator while waiting for the data
                   return Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
-                  // Show an error message if the data fetching failed
                   return Center(child: Text('Error: ${snapshot.error}'));
                 } else {
-                  // Data has been successfully fetched
                   if (snapshot.hasData) {
-                    // print(snapshot.data);
                     List<OrderHistoryData> orderHistory =
                         snapshot.data as List<OrderHistoryData>;
-                    if (orderHistory.length == 0) {
+                    if (orderHistory.isEmpty) {
                       return Center(child: Text("No Data Found"));
                     }
-                    // snapshot.data as List<OrderHistoryData>;
                     return ListView.builder(
                       padding: EdgeInsets.symmetric(vertical: 8),
                       itemCount: orderHistory.length,
@@ -76,7 +69,7 @@ class OrderHistory extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              child: ClipOval(
+                              child: const ClipOval(
                                 child: Icon(
                                   Icons.shopping_bag,
                                   color: Colors.black,

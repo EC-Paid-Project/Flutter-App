@@ -1,18 +1,16 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
 class Filter extends StatelessWidget {
   final String search;
-  const Filter({Key? key,  required this.search}) : super(key: key);
-
+  const Filter({Key? key, required this.search}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         openFilterDialog(context, search);
       },
-      child: ListTile(
+      child: const ListTile(
         leading: Icon(Icons.filter_alt_outlined),
         trailing: Text("Filter"),
       ),
@@ -20,11 +18,9 @@ class Filter extends StatelessWidget {
   }
 }
 
-// Function to show dialog box
 void openFilterDialog(BuildContext context, String search) async {
   final List<String> sizeOptions = ['Small', 'Medium', 'Large'];
   final List<String> priceOptions = ['Min', 'Max'];
-
   String? selectedSize;
   String? selectedPrice;
   String selectedSearch = search;
@@ -82,10 +78,7 @@ void openFilterDialog(BuildContext context, String search) async {
   ).then((selectedFilters) {
     if (selectedFilters != null) {
       final encoded = jsonEncode(selectedFilters);
-      // Do something with selected filters
       Navigator.pushNamed(context, "/gridPage", arguments: encoded);
-
-      print(selectedFilters);
     }
   });
 }

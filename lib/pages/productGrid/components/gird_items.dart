@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app/urls/urls.dart';
 import '../../../models/food_and_category.dart';
 
 class GridItem extends StatelessWidget {
@@ -18,7 +17,8 @@ class GridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed("/productDetail", arguments: lpg.id.toString());
+        Navigator.of(context)
+            .pushNamed("/productDetail", arguments: lpg.id.toString());
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -29,7 +29,7 @@ class GridItem extends StatelessWidget {
           decoration: BoxDecoration(
             color: Color.fromARGB(255, 244, 244, 244),
             borderRadius: BorderRadius.circular(10),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: Colors.black12,
                 blurRadius: 2,
@@ -46,7 +46,7 @@ class GridItem extends StatelessWidget {
                   message: '${lpg.discount.toString()} % off}',
                   location: BannerLocation.topEnd,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(10),
                       topRight: Radius.circular(10),
                     ),
@@ -61,7 +61,7 @@ class GridItem extends StatelessWidget {
                 )
               else
                 ClipRRect(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10),
                   ),
@@ -80,7 +80,7 @@ class GridItem extends StatelessWidget {
                   children: [
                     Text(
                       lpg.title,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -88,7 +88,7 @@ class GridItem extends StatelessWidget {
                     SizedBox(height: 4),
                     Text(
                       '\$${lpg.price}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 14,
                         color: Colors.grey,
                       ),

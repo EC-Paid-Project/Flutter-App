@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../models/signup.dart';
 import '../../../platformSettings/input.dart';
 import '../actions/actions.dart';
@@ -15,6 +14,7 @@ class CustomTextField extends StatelessWidget {
   final bool? obscureText;
 
   const CustomTextField({
+    super.key,
     required this.type,
     required this.label,
     required this.placeholder,
@@ -28,7 +28,6 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      // width: 300,
       child: PlatformTextField(
           labelText: label,
           prefixIcon: myIcon,
@@ -40,13 +39,7 @@ class CustomTextField extends StatelessWidget {
           },
           suffixIcon: suffixIcon,
           obscureText: obscureText ?? false,
-          keyboardType: keyboardType
-          // decoration: InputDecoration(
-          //   labelText: label,
-          //   prefixIcon: (myIcon),
-          // border: OutlineInputBorder(
-          // borderSide: BorderSide(color: Colors.grey, width: 1),
-          ),
+          keyboardType: keyboardType),
     );
   }
 }

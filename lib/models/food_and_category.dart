@@ -7,9 +7,9 @@ class LPG {
   int quantity = 1;
   String image = "";
   int price;
-  double size=0;
-  String description="";
-  double discount=0.0;
+  double size = 0;
+  String description = "";
+  double discount = 0.0;
 
   LPG(
       {this.id = -1,
@@ -17,19 +17,20 @@ class LPG {
       this.title = "",
       this.price = 0,
       this.image = '',
-      this.quantity = 0,this.discount=0.0});
+      this.quantity = 0,
+      this.discount = 0.0});
 
   LPG.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         description = json['description'],
         size = json['size'],
-        discount = json['discount']??0.0,
+        discount = json['discount'] ?? 0.0,
         title = json['name'],
         image = baseUrl + json["image"],
-        price = (json['price']-((json['discount']/1000)*json['price']).round());
+        price = (json['price'] -
+            ((json['discount'] / 1000) * json['price']).round());
 
   Map<String, dynamic> toJson() => {
-        // 'category_id': categoryId,
         'name': title,
         'id': id,
         'quantity': quantity,
@@ -44,13 +45,10 @@ class LPG {
 class Category {
   int categoryId = -1;
   String name;
-
   Category(this.name);
-
   Category.fromJson(Map<String, dynamic> json)
       : categoryId = json['category_id'],
         name = json['name'];
-
   Map<String, dynamic> toJson() => {
         'name': name,
       };
