@@ -55,6 +55,7 @@ getAll() async {
 }
 
 sendOrder(cart, address, type, id, transId) async {
+try{
 
   addAuthTokenToHeaders(apiClient3);
 
@@ -67,7 +68,11 @@ sendOrder(cart, address, type, id, transId) async {
         "address": address,
         "Transcation_id": transId
       });
-  return response.body;
+  return response.statusCode;
+}catch(err){
+  return 400;
+}
+
 }
 
 getOne(id) async {
@@ -99,8 +104,12 @@ login(body) async {
   
   }
   final a = await getUser();
+  if(a!=null){
 
   return response;
+  }
+  return response;
+
 }
 
 signup(body) async {
@@ -116,9 +125,15 @@ getDistrbutor() async {
 }
 
 logout() async {
+  try{
+
   addAuthTokenToHeaders(apiClient3);
   final response = await apiClient3.post("/dj-rest-auth/logout/",{});
-  return response.body;
+  return response.statusCode;
+  }catch(err){
+    return 400;
+
+  }
 }
 
 getOrderHistory() async {

@@ -71,7 +71,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                                   onTap: () {
                                     getUserAddress(context, addressAndPhone);
                                   },
-                                  child: Icon(Icons.home),
+                                  child: const Icon(Icons.home),
                                 ),
                                 const Text(
                                   'Add New Address',
@@ -94,7 +94,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.black,
                           foregroundColor: Colors.white),
-                      child: Text("Proceed"),
+                      child: const Text("Proceed"),
                       onPressed: () async {
                         if (addressAndPhone.isValid()) {
                           setState(() {

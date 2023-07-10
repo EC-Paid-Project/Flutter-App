@@ -35,18 +35,36 @@ void cashOnDeliveryDialogue(BuildContext context,
           AddressAndPhone addressAndPhone =
               AddressAndPhone.fromJson(addressAndPhoneJson1);
           Distributor distributor = Distributor.fromJson(LpgDistributor1);
-          sendOrder(
+          
+          final a=await sendOrder(
             cart.lpg,
             addressAndPhone,
             type,
             distributor.id.toString(),
             transId,
           );
+          if(a==200 || a==201){
+
           Navigator.of(context).pop();
           Navigator.of(context).pop();
           Navigator.of(context).pop();
           Navigator.of(context).pop();
           Navigator.pushNamed(context, "/orderPlaced");
+          }else{
+            showPlatformDialog(
+              context: context,
+              builder: (_) => PlatformAlertDialog(
+                title: 'Error',
+                content: 'Something went wrong try again',
+                onConfirmPressed: () {
+                  Navigator.of(context).pop();
+                },
+                onCancelPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            );
+          }
         }
       },
     ),

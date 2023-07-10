@@ -66,7 +66,7 @@ class AddAddressForm extends StatelessWidget {
             ),
             child: PlatformTextField(
               labelText: 'Postcode',
-              prefixIcon: Icon(Icons.mail),
+              prefixIcon: const Icon(Icons.mail),
               onChanged: (value) {
                 addressAndPhone.postCode = value;
               },
@@ -74,14 +74,15 @@ class AddAddressForm extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(left: 4.0, top: 4.0, bottom: 4.0),
+            padding: const EdgeInsets.only(left: 4.0, top: 4.0, bottom: 4.0),
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(5)),
               color: Colors.white,
             ),
             child: PlatformTextField(
               labelText: 'Phone',
-              prefixIcon: Icon(Icons.phone),
+              prefixIcon: const Text("+92",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+
               onChanged: (value) {
                 int? parsedValue = int.tryParse(value);
                 if (parsedValue != null) {

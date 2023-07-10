@@ -15,13 +15,13 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text('Profile'),
+        title: const Text('Profile'),
       ),
       body: FutureBuilder<User>(
         future: loadUserProfile(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else if (snapshot.hasData) {
@@ -31,7 +31,7 @@ class ProfilePage extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 child: Column(
                   children: [
-                    ProfileIconWidget(),
+                    const ProfileIconWidget(),
                     const SizedBox(
                       height: 10,
                     ),
@@ -86,7 +86,7 @@ class ProfilePage extends StatelessWidget {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return TOSDialog();
+                              return const TOSDialog();
                             });
                       },
                       trailingIcon: true,
@@ -107,9 +107,13 @@ class ProfilePage extends StatelessWidget {
                       leadingIcon: LineAwesomeIcons.alternate_sign_out,
                       onTap: () async {
                         final prefs = await SharedPreferences.getInstance();
+                        final a=await logout();
+                        if(a==200){
                         prefs.remove('lpguser');
-                        await logout();
+                        prefs.remove('authToken');
                         Navigator.pushNamed(context, '/login');
+
+                        }
                       },
                       trailingIcon: false,
                       textColor: Colors.red,
