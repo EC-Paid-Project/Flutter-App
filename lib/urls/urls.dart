@@ -54,14 +54,6 @@ getAll() async {
   return jsonEncode(products);
 }
 
-getAlld() async {
-  addAuthTokenToHeaders(apiClient3);
-
-  final response = await apiClient3.get('/discounts');
-
-  return response.body;
-}
-
 sendOrder(cart, address, type, id, transId) async {
 
   addAuthTokenToHeaders(apiClient3);
@@ -76,12 +68,6 @@ sendOrder(cart, address, type, id, transId) async {
         "Transcation_id": transId
       });
   return response.body;
-}
-
-sendAddress(address) async {
-  addAuthTokenToHeaders(apiClient3);
-  final response = await apiClient3.post("/address/", address);
-
 }
 
 getOne(id) async {
@@ -131,7 +117,7 @@ getDistrbutor() async {
 
 logout() async {
   addAuthTokenToHeaders(apiClient3);
-  final response = await apiClient3.get("/dj-rest-auth/logout/");
+  final response = await apiClient3.post("/dj-rest-auth/logout/",{});
   return response.body;
 }
 
@@ -223,15 +209,3 @@ return 200;
 }
 }
 
-
-
-
-
-
-
-//send addresss
-
-
-
-// Function to initiate handshake
- 
